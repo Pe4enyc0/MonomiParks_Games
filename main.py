@@ -19,15 +19,15 @@ print(some_data)
 with open('result.json', 'w', encoding='utf-8') as file:
     json.dump(some_data,file)
 
-createSQL = """CREATE TABLE name_of_game (name_of_game TEXT, price TEXT)"""
+createSQL = """CREATE TABLE IF NOT EXISTS name_of_game (name_of_game TEXT, price TEXT)"""
 conn = sqlite3.connect('data_from_web.db')
 cursor = conn.cursor()
 cursor.execute(createSQL)
 
 SQL = """INSERT INTO name_of_game (name_of_game, price) VALUES (?,?)"""
 
-for i in range(len(price)):
-    name_of_game = name_of_game[i].text
-    price = price[i].text
-    cursor.execute(SQL, [name_of_game, price])
+for i in range(len(name_of_game)):
+    name_of_games = name_of_game[i].text
+    prices = price[i].text
+    cursor.execute(SQL, [name_of_games, prices])
     conn.commit()
